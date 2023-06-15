@@ -4,7 +4,10 @@ from sympy.utilities.iterables import multiset_permutations
 import math
 from scipy.special import comb
 
+# Define the data type for complex numbers
 data_type = np.complex128
+
+# Define the Pauli matrices
 I = np.array([[1,0],[0,1]]).astype(data_type)
 X = np.array([[0,1],[1,0]]).astype(data_type)
 Y = np.array([[0,-1j],[1j,0]]).astype(data_type)
@@ -15,12 +18,18 @@ pauli_dict = {'I':I, 'X':X, 'Y':Y, 'Z':Z}
 fac_fun = np.math.factorial
 
 def get_pauli_matrix(string):
+	"""
+	Construct a Pauli matrix from a string representation.
+	"""
 	out = np.array([[1.]]).astype(data_type)
 	for p in string:
 		out = np.kron(out, pauli_dict[p])
 	return out
 
 def get_symmetric_pauli_term(n,nx,ny,nz, normalize = False):
+	"""
+	Convert Pauli counts into a symmetrized Pauli Matrix.
+	"""
 	if nx+ny+nz > n:
 		raise valueError('too many Paulis')
 	ni = n - nx - ny - nz
@@ -43,6 +52,9 @@ def construct_matrix_large(n,paulis,coeffs):
 
 
 def sn_spin_transfer_term(n, mu, d1, d2, ix, iy, iz):
+	"""
+	Calculate structure coefficients in symmetrized Pauli basis (not optimized).
+	"""
 	i1 = n - ix - iy - iz
 
 	def sn_spin_iterator():
@@ -113,6 +125,9 @@ def construct_matrix_blocks(n,paulis,coeffs):
 
 
 def dicke(nn,dd):
+	"""
+	Constructs Dicke state on given number of qubits.
+	"""
 	def binary_to_int(st):
 		out = 0
 		for i,s in enumerate(st):
