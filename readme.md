@@ -1,6 +1,11 @@
+
 # Efficient classical algorithms for simulating symmetric quantum systems
 
-Classical simulation of Hamiltonians that are invariant under the permutation group. Here, we confirm the algorithm works by comparing to random examples which are small enough for exact diagonalization. The algorithm here is only used for confirming results and has not been optimized for runtime.
+This code classically simulates Hamiltonians on qubit systems that are invariant under the permutation group. The code works by comparing to random examples which are small enough for exact diagonalization. 
+
+*As a disclaimer, though this code runs in polynomial time in the number of qubits, it has not been optimized to have the actual scaling reported in the paper.* 
+
+For further details, please refer to the corresponding paper: [https://arxiv.org/abs/2211.16998](https://arxiv.org/abs/2211.16998)
 
 ## Dependencies
 The code is written completely in Python. We use the following packages:
